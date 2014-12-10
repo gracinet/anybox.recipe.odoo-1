@@ -465,6 +465,11 @@ conf = openerp.tools.config
         These changes appeared in nightly build 6.1-20120530-233414.
         The worker script itself does not appear in nightly builds.
         """
+        if self.major_version >= (7, 0):
+            self._get_or_create_script('odoo_cron_worker',
+                                       name=qualified_name)[1]
+            return
+
         script_src = join(self.openerp_dir, 'openerp-cron-worker')
         if not os.path.isfile(script_src):
             version = self.version_detected
@@ -591,6 +596,9 @@ conf = openerp.tools.config
             ('openerp_upgrader',
              'anybox.recipe.openerp.runtime.upgrade',
              'upgrade'),
+            ('odoo_cron_worker',
+             'anybox.recipe.openerp.runtime.cron_workers',
+             'main'),
         ))
 
         if self.major_version >= (7, 3):

@@ -7,10 +7,13 @@ COVERAGE
 .noseids
 *.pyc
 *.orig
-
+*~
+\#*\#
 buildbot/.installed.cfg
 buildbot/bin/
 buildbot/develop-eggs/
 buildbot/etc/
 buildbot/parts/
 doc/sphinx_build
+funkload/funkload.xml*
+*.log
